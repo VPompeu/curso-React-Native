@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Pressable } from "react-native";
 
-export function CreateButton(){
+export function CreateButton({onCreate}){
 
     const[text, setText] = useState("aaaa");
 
     function hadlePress(){
-        console.log(text);
+        if(onCreate) onCreate(text);
+        setText("");
       }
       return(
         <View style={styles.conteiner}>
-            <TextInput style={styles.input} value={text} onChangeText={(value) => setText(value)}/>
+            <TextInput style={styles.input} value={text} onChangeText={(value) => console.log(value)}/>
              <Pressable style={styles.btn}onPress={hadlePress}>
                 <Text style={styles.text}>Criar</Text>
              </Pressable>
